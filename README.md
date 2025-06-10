@@ -22,11 +22,6 @@ A React-based information security assistant application with a responsive dashb
 - [About](#about)  
 - [Features](#features)  
 - [Getting Started](#getting-started)  
-- [Project Structure](#project-structure)  
-- [Usage](#usage)  
-- [Future Improvements](#future-improvements)  
-- [License](#license)  
-
 ---
 
 ## About
@@ -105,3 +100,5 @@ This application provides an enterprise-style InfoSec dashboard with a collapsib
 git clone https://github.com/yourusername/azure-infosec-chat-app.git
 cd azure-infosec-chat-app
 npm install
+
+
