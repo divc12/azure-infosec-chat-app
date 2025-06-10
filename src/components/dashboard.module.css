@@ -1,0 +1,73 @@
+/* Container holds the dashboard, with left‐padding to clear the sidebar */
+/* dashboard.module.css */
+.container {
+  position: absolute;
+  top: 48px;             /* directly below the 48px TopBar */
+  left: 0;               /* let gray background extend all the way to the left */
+  right: 0;              /* …and all the way to the right */
+  bottom: 0;             /* …and down to the bottom */
+  overflow-y: auto;      /* only show scrollbar if content actually overflows vertically */
+  background-color: #F5F5F5; /* Background Gray filling the full width */
+  padding-top: 16px;     /* keep any vertical padding you need */
+  padding-right: 16px;   /* keep any right‐side padding you need */
+  padding-left: 300px;   /* push the tile grid over by 300px */
+}
+
+/* The grid that lays out 4 tiles in 2 columns × 2 rows */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  grid-template-rows: repeat(2, auto);
+  gap: 12px;
+  width: 70%;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Each tile’s base look */
+.tile {
+  background-color: #FFFFFF;        /* white tile to contrast the gray background */
+  border: 1px solid #D9232D;        /* Primary Red border */
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 16px;
+  min-height: 120px;                /* keep tiles from being too tall */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+/* Hover effect on tile */
+.tile:hover {
+  background-color: #F5F5F5;        /* Background Gray on hover */
+  transform: scale(1.02);
+}
+
+/* Icon inside each tile */
+.tileIcon {
+  font-size: 28px;
+  color: #D9232D;                   /* Primary Red */
+  margin-bottom: 8px;               /* spacing below the icon */
+}
+
+/* Text inside each tile */
+.tileText {
+  color: #333333;                   /* Text/Icon Dark Gray */
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   RESPONSIVE: On screens < 768px, stack the tiles in a single column 
+   ─────────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr; /* single column */
+    width: 100%;
+  }
+  .container {
+    padding-left: 48px; /* only leave room for collapsed sidebar */
+  }
+}

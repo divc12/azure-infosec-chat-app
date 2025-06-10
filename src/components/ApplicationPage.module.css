@@ -1,0 +1,261 @@
+/* ApplicationPage.module.css */
+/* ─────────────────────────────────────────────────────────────────────────────── */
+
+/* Container for the application area (below TopBar, to right of Sidebar) */
+.appPageContainer {
+  flex: 1; 
+  height: calc(90vh - 48px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+  overflow: hidden;
+  margin-top: 55px; /* push content below the 48px TopBar */
+}
+
+/* ─── Main Chat Frame ───────────────────────────────────────────────────────── */
+.chatFrame {
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1px solid #888888; /* add a light‐gray border again */
+  box-shadow:
+    0 4px 8px -2px rgba(0, 0, 0, 0.2),
+    0 8px 16px -4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333333; /* Text/Icon Dark Gray */
+}
+
+/* ─── Header ───────────────────────────────────────────────────────────────── */
+.header {
+  padding: 16px;
+  background: #F5F5F5; /* Background Gray */
+  color: #D9232D;      /* Primary Red */
+  font-size: 20px;
+  font-weight: 600;
+  border-bottom: 1px solid #888888; /* Light Text Gray */
+  display: flex;
+  align-items: center;
+}
+.headerIcon {
+  font-size: 24px !important;
+  color: #D9232D !important; /* Primary Red */
+  margin-right: 8px;
+}
+
+/* ─── Message Panel ────────────────────────────────────────────────────────── */
+.messageContainer {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+.messageContainer::-webkit-scrollbar {
+  width: 8px;
+}
+.messageContainer::-webkit-scrollbar-track {
+  background: #F5F5F5; /* Background Gray */
+  border-radius: 4px;
+}
+.messageContainer::-webkit-scrollbar-thumb {
+  background: #888888; /* Light Text Gray */
+  border-radius: 4px;
+}
+.messageContainer::-webkit-scrollbar-thumb:hover {
+  background: #333333; /* Text/Icon Dark Gray */
+}
+
+/* ─── Message Rows ────────────────────────────────────────────────────────── */
+.messageRowUser {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+.messageRowBot {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 12px;
+}
+
+/* ─── Chat Bubbles ─────────────────────────────────────────────────────────── */
+.bubbleUser {
+  max-width: 70%;
+  padding: 14px 18px;
+  border-radius: 18px;
+  color: #ffffff;
+  /* background: #D9232D; /* Primary Red */
+  background: var(--primary-red);
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 18px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 14px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bubbleBot {
+  max-width: 70%;
+  padding: 14px 18px;
+  border-radius: 18px;
+  /* color: #333333;      /* Text/Icon Dark Gray */
+  /* background: #F5F5F5; /* Background Gray */
+  background: var(--bg-gray);
+  color: var(--text-dark);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 18px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 14px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ─── INPUT WRAPPER: unified border around both text‐area & controls ─── */
+.inputWrapper {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #888888; /* Light Text Gray */
+  border-radius: 24px; /* ChatGPT-style pill shape */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* clips children so they share the same rounded border */
+  /*padding: 4px 12px; /* Optional: Add inner spacing for a more polished look */
+}
+
+/* ─── Chat input (TextField) ──────────────────────────────────────────────── */
+.textFieldWrapper {
+  width: 100%;
+  padding: 4px 12px; /* Only pad the input, not the send button */
+}
+
+/* Neutralize all Fluent UI focus visuals on the outer fieldGroup */
+.textFieldWrapper :global(.ms-TextField-fieldGroup),
+.textFieldWrapper :global(.ms-TextField-fieldGroup:hover),
+.textFieldWrapper :global(.ms-TextField-fieldGroup:focus),
+.textFieldWrapper :global(.ms-TextField-fieldGroup:focus-within),
+.textFieldWrapper :global(.ms-TextField-fieldGroup:focus-visible) {
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background-clip: padding-box !important;
+}
+
+/* Chat textarea behavior — no border, no resize, no outline */
+.textFieldWrapper :global(.ms-TextField-field),
+.textFieldWrapper :global(.ms-TextField-field:hover),
+.textFieldWrapper :global(.ms-TextField-field:focus),
+.textFieldWrapper :global(.ms-TextField-field:focus-visible),
+.textFieldWrapper :global(textarea:focus),
+.textFieldWrapper :global(textarea:focus-visible),
+.textFieldWrapper :global(textarea:focus-within) {
+  resize: none !important;
+  overflow-y: auto;
+  max-height: 180px;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-clip: padding-box !important;
+  font-size: 16px; /* 👈 Adjust this to change chat input font size */
+}
+
+/* Kill any pseudo-elements that inject blue borders */
+.textFieldWrapper :global(.ms-TextField-fieldGroup::after),
+.textFieldWrapper :global(.ms-TextField::after),
+.textFieldWrapper :global(textarea::after) {
+  content: none !important;
+  display: none !important;
+}
+
+/* ─── Control Bar (Bottom) ────────────────────────────────────────────────── */
+.controlBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: none;            /* remove divider here—wrapper has a unified border */
+  padding: 8px 16px;
+}
+
+/* Left side icon group */
+.leftControls {
+  display: flex;
+  align-items: center;
+}
+/* Right side (send button) */
+.rightControls {
+  display: flex;
+  align-items: center;
+}
+
+/* Common styling for the three small buttons (Upload/Download/Clear) */
+.controlButton :global(.ms-Button-icon) {
+  margin-left: 8px;
+  font-weight: 600;
+  color: #333333; /* Text/Icon Dark Gray */
+}
+
+/* ─── CSS CLASS FOR DARK ICONS ───────────────────────────────────────────────── */
+/* Apply this class to any Icon or IconButton container */
+.darkIcon :global(.ms-Icon) {
+  color: #333333 !important; /* Text/Icon Dark Gray */
+}
+
+/* ─── SEND BUTTON RED VARIANT ────────────────────────────────────────────────── */
+/* Override both .ms-Button-root AND .ms-Button--primary so our red styling wins */
+:global(.ms-Button-root).sendButtonRed,
+:global(.ms-Button--primary).sendButtonRed {
+  min-width: 0 !important;
+  height: 40px !important;
+  width: 40px !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  background: #D9232D !important; /* Primary Red */
+  animation-name: scaleIn;
+  animation-duration: 0.3s;
+}
+
+/* Hover state for the same */
+:global(.ms-Button-root).sendButtonRed:hover,
+:global(.ms-Button--primary).sendButtonRed:hover {
+  background: #B71C1F !important; /* Darker Red on hover */
+}
+
+/* Active state for the same */
+:global(.ms-Button-root).sendButtonRed:active,
+:global(.ms-Button--primary).sendButtonRed:active {
+  background: #A11A20 !important; /* Even darker red on active */
+}
+
+/* The white icon inside the send button */
+:global(.ms-Button-root).sendButtonRed .ms-Button-icon,
+:global(.ms-Button--primary).sendButtonRed .ms-Button-icon {
+  font-size: 18px !important;
+  color: #FFFFFF !important;
+  transition: transform 0.1s ease-in-out;
+}
+
+/* ─── Scale-in keyframes for the send button ────────────────────────────────── */
+@keyframes scaleIn {
+  from { transform: scale(0.8); }
+  to   { transform: scale(1); }
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   RESPONSIVE: On screens < 600px, let the chat fill 100% width & remove rounding 
+   ─────────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .chatFrame {
+    width: 100%;
+    border-radius: 0; /* remove rounded corners to fill mobile width */
+  }
+  .appPageContainer {
+    height: calc(100vh - 48px); /* use full height minus topbar */
+    padding: 0 8px;              /* a little side padding */
+  }
+}

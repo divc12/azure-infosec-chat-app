@@ -1,0 +1,249 @@
+/* azuretopbar.module.css */
+/* ─────────────────────────────────────────────────────────────────────────────── */
+/* Entire TopBar: 48px tall bar, fixed to top */
+.azureTopBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background-color: #D9232D;               /* Primary Red */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  z-index: 800;                             /* below Sidebar (900) */
+  display: flex;
+  align-items: center;
+
+  /* Push everything else right by 48px so the fixed hamburger sits on top */
+  padding-left: 48px;
+  margin: 0;
+}
+
+/* ─── Hamburger Button (TopBar) ──────────────────────────────────────────────── */
+/* FIX: make the button 100% transparent, no border, no radius, no shadows. */
+.hamburgerButton {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  z-index: 1000 !important;               /* above Sidebar (900) & TopBar (800) */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Ensure the internal flex container has no padding or border-radius */
+.hamburgerButton :global(.ms-Button-flexContainer) {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Icon inside button: always dark-gray when collapsed */
+.hamburgerButton :global(.ms-Icon) {
+  color: #333333 !important;              /* Text/Icon Dark Gray */
+  font-size: 20px !important;
+  margin: 0 !important;
+}
+
+/* ─── Hover & Focus (COLLAPSED state): light gray background ──────────────── */
+.hamburgerButton:hover,
+.hamburgerButton:focus {
+  background-color: #F5F5F5 !important;    /* Background Gray */
+}
+
+/* ─── When Sidebar is EXPANDED: show Background Gray + Dark Gray icon ─────── */
+.hamburgerButton.hamburgerExpanded {
+  background-color: #F5F5F5 !important;    /* Background Gray */
+}
+.hamburgerButton.hamburgerExpanded :global(.ms-Icon) {
+  color: #333333 !important;              /* Text/Icon Dark Gray */
+}
+/* Hover/active over expanded (light-gray) → stay light-gray */
+.hamburgerButton.hamburgerExpanded:hover,
+.hamburgerButton.hamburgerExpanded:active {
+  background-color: #F5F5F5 !important;
+}
+
+/* ─── “Microsoft Azure” Text Container ───────────────────────────────────────── */
+/* Full 48px height, centered vertically */
+.azureTitleContainer {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 8px;        /* horizontal padding for hover area */
+  border-radius: 4px;    /* round corners on hover */
+  margin-right: 16px;    /* gap before the search box */
+  color: #333333;        /* Text/Icon Dark Gray */
+}
+.azureTitleContainer:hover {
+  background-color: #F5F5F5; /* Background Gray */
+}
+
+/* When hovering over the title container, make the title text Dark Gray */
+.azureTitleContainer:hover .azureTitle {
+  color: #333333;  /* Text/Icon Dark Gray */
+}
+
+.azureTitle {
+  color: #F5F5F5 ;        /* Text/Icon Dark Gray */
+  font-family: 'Segoe UI Semibold', sans-serif;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* ─── SearchBox (portal‐style) ─────────────────────────────────────────── */
+/* fixed width, always Background Gray */
+.azureSearchBox {
+  position: relative;
+  width: 500px !important;       /* fixed width—never expand */
+  height: 32px !important;       /* fixed height for icon + input */
+  background-color: #F5F5F5;      /* Background Gray */
+  border-radius: 0px;             /* flat corners */
+  overflow: hidden;               /* clip any stray edges */
+}
+
+/* Disable FluentUI’s built-in “expand/shrink” animation */
+.azureSearchBox :global(.ms-SearchBox-root) {
+  width: 100% !important;
+  transition: none !important;
+}
+
+/* ── INPUT FIELD: transparent over container’s background ───────────────────── */
+.azureSearchBox :global(.ms-SearchBox-field) {
+  background: transparent !important;
+  border: none !important;
+  height: 32px !important;
+  line-height: 20px !important;
+  padding-left: 36px !important;   /* reserve room for 24px icon + gap */
+  font-size: 15px !important;
+  color: #333333 !important;        /* Text/Icon Dark Gray */
+  outline: none !important;         /* no focus outline */
+  box-shadow: none !important;      /* no shadow on focus */
+  margin: 0 !important;             /* remove any margins */
+  border-radius: 0 !important;      /* parent has the rounding */
+}
+
+/* Placeholder styling */
+.azureSearchBox :global(.ms-SearchBox-field::placeholder) {
+  color: #888888 !important;       /* Light Text Gray */
+  opacity: 1 !important;
+}
+
+/* ── ICON CONTAINER: absolute on top-left, transparent background ───────────── */
+.azureSearchBox :global(.ms-SearchBox-iconContainer) {
+  position: absolute !important;
+  left: 4px !important;                    /* 4px from left edge */
+  top: 50% !important;                     
+  transform: translateY(-50%) !important;   /* vertical center in 32px */
+  width: 24px !important;                   /* 24×24 icon “box” */
+  height: 24px !important;
+  background: transparent !important;
+  border-radius: 50% !important;            /* circle behind icon if needed */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 4 !important;                    
+  pointer-events: none !important;          
+  visibility: visible !important;           
+  opacity: 1 !important;                    
+}
+
+/* The magnifier icon itself */
+.azureSearchBox :global(.ms-SearchBox-icon) {
+  font-size: 16px !important;
+  color: #888888 !important;                /* Light Text Gray */
+  margin: 0 !important;
+  z-index: 5 !important;                    
+  visibility: visible !important;           
+  opacity: 1 !important;                    
+}
+
+/* ── ON FOCUS: entire container flips to white—but keep icon on top ─────── */
+.azureSearchBox:focus-within {
+  background-color: #FFFFFF !important;      /* white when focused */
+}
+
+/* When focused, ensure the icon container’s transparency shows white */
+.azureSearchBox:focus-within :global(.ms-SearchBox-iconContainer) {
+  background: transparent !important;
+}
+
+/* Force the icon container and icon to stay visible on focus */
+.azureSearchBox:focus-within :global(.ms-SearchBox-iconContainer),
+.azureSearchBox:focus-within :global(.ms-SearchBox-icon) {
+  display: flex !important;  
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 5 !important;       /* keep icon highest layer */
+}
+
+/* Prevent any FluentUI “hide-on-focus” tricks */
+.azureSearchBox :global(.ms-SearchBox-iconContainer:hover),
+.azureSearchBox :global(.ms-SearchBox-iconContainer:focus) {
+  background: transparent !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Catch alternate wrapper class if FluentUI changes icon wrapper name */
+.azureSearchBox :global(.ms-SearchBox-iconWrapper) {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 5 !important;
+}
+
+/* ─── Right-side IconButtons (dark-gray icons) ────────────────────────────── */
+.rightIconButton {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+.rightIconButton :global(.ms-Button-icon) {
+  color: #333333;               /* Text/Icon Dark Gray */
+  font-size: 20px;
+}
+.rightIconButton:hover {
+  background-color: #F5F5F5;    /* Background Gray */
+}
+.rightIconButton:active {
+  background-color: #F5F5F5;    /* Background Gray */
+}
+
+/* ─── Persona override: light-gray circle, dark-gray initials ───────────────── */
+.azurePersona {
+  margin-left: 0;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+}
+.azurePersona :global(.ms-Persona-initials) {
+  background-color: #F5F5F5 !important; /* Background Gray */
+  color: #333333 !important;            /* Text/Icon Dark Gray */
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}

@@ -1,0 +1,129 @@
+/* azuresidebar.module.css */
+
+/* ─────────────────────────────────────────────────────────────────────────────── */
+/* Sidebar container (always Primary Red #D9232D) */
+.sidebarContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 200px; /* default expanded width; will be overridden inline when collapsed */
+  background-color: #D9232D;           /* Primary Red */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: width 0.2s ease-in-out;
+  z-index: 900;
+}
+
+/* .sidebarItemActive { */
+  /*background-color: #F5F5F5;  /* Light gray “highlight” */
+/* } */
+
+/* .sidebarItemActive .sidebarIcon, */
+/* .sidebarItemActive .sidebarLabel { */
+  /*color: #333333;             /* Dark gray text/icon when active */
+/*}
+
+/* ─── Header area (48px tall) ────────────────────────────────────────────────── */
+.headerArea {
+  position: relative;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* Always on Primary Red */
+  background-color: #D9232D;
+}
+
+/* Hover/active on header just darkens slightly (optional) */
+.headerArea:hover,
+.headerArea:active {
+  background-color: #B71C22; /* slightly darker red on hover */
+}
+
+/* ─── Stylized “S” Logo ───────────────────────────────────────────────────────── */
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #FFFFFF;       /* white “S” */
+  margin-left: 32px;    /* push it slightly right of the hamburger */
+  font-family: 'Segoe UI Semibold', sans-serif;
+  user-select: none;
+}
+
+/* ─── Sidebar’s own hamburger (inside header) ───────────────────────────────── */
+.sidebarHamburger {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  z-index: 900;
+  color: #FFFFFF;        /* always white on red */
+}
+
+/* ─── Sidebar item rows (below header) ──────────────────────────────────────── */
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  height: 48px;          /* slightly taller for better tap area */
+  padding-left: 16px;
+  cursor: pointer;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: #FFFFFF;        /* white text/icon by default */
+  transition: background-color 0.2s;
+}
+
+.sidebarItem:hover {
+  background-color: #F5F5F5;   /* Background Gray on hover */
+}
+
+/* Icon inside each sidebar item */
+.sidebarIcon {
+  font-size: 20px;
+  color: #F5F5F5 ;              /* Dark gray icon when item is expanded */
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+}
+
+/* Label next to icon (hidden when collapsed) */
+.sidebarLabel {
+  margin-left: 12px;
+  color: #F5F5F5  ;              /* Dark gray text */
+  white-space: nowrap;
+}
+
+/* When collapsed: hide text—but keep icon centered */
+.sidebarContainer.collapsed .sidebarItem {
+  justify-content: center;
+  padding-left: 0;
+}
+
+.sidebarContainer.collapsed .sidebarLabel {
+  display: none;
+}
+
+/* If you want the icon to lighten on hover */
+.sidebarItem:hover .sidebarIcon,
+.sidebarItem:hover .sidebarLabel {
+  color: #333333 ; /* Light Text Gray on hover */
+}
+
+/* ───────────────────────────────────────────────────────────────────────────────
+   RESPONSIVE: On screens < 768px, always force the sidebar to the collapsed width 
+   ─────────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .sidebarContainer {
+    width: 48px !important;  /* always collapsed */
+  }
+  .sidebarContainer .sidebarLabel {
+    display: none !important; /* hide text */
+  }
+}
